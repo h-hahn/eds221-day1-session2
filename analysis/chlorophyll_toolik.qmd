@@ -1,0 +1,23 @@
+---
+title: "toolik chlorophyll concentrations"
+author: "hope"
+format: html
+---
+
+```{r}
+library(here)
+library(tidyverse)
+library(janitor)
+```
+
+```{r}
+chlorophyll <- read_csv(here("data/toolik_chlorophyll.csv"), na = c(".", "missing")) |>
+  clean_names() |> 
+  rename(chl_a = active_chl_a_ug_l)
+```
+```{r}
+ggplot(chlorophyll, aes(x = chl_a)) +
+  geom_histogram(color = "cornflowerblue") +
+  theme_light()
+```
+
